@@ -1,0 +1,40 @@
+{{#each erros}}
+<div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+<h2>Lista de Postagens</h2>
+<hr>
+<a href="/admin/postagens/add">
+    <button class="btn btn-success">Nova Postagem</button>
+</a><hr>
+
+{{#each postagens}}
+<div class="card">
+    <div class="card-header">
+        <h2 class="text-center">{{titulo}}</h2>
+    </div>
+    <div class="card-body">
+        <h5>Descrição: {{descricao}}</h5>
+        <h5><i>Conteúdo: {{conteudo}}</i></h5>
+    </div>
+    <div class="card-footer text-muted">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="/admin/postagens/edit/{{id}}">
+                <button class="btn btn-success">
+                    Editar
+                </button>
+            </a>
+            <form action="/admin/postagens/delete" method="post">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger">
+                    Deletar
+                </form>
+            </div>
+            <hr>
+            <p><b>{{categoria.nome}}</b> - {{date}}</p>
+        </div>
+    </div>
+    <hr>
+    {{else}}
+    <h5>nenhuma postagem!</h5>
+    {{/each}}

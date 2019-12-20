@@ -1,0 +1,42 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+
+  <h2>Lista de Usuários</h2>
+  <hr>
+  <a href="/usuarios/registro">
+    <button type="button" class="btn btn-success mt-2">Novo registro</button>
+  </a>
+<div class="row">
+    {{#each usuarios}}
+  <div class="col-sm-4 mt-4">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><b>Nome:</b> {{nome}}</p>
+        <p class="card-text"><b>Email:</b> {{email}}</p>
+        <p class="card-text"><b>Permissão:</b>
+          {{#if isAdmin}}
+            Administrador
+          {{else}}
+            Usuário
+          {{/if}}
+        </p>
+        
+        <div class="btn-group" role="group" aria-label="Basic example">  
+          <a href="/usuarios/registros/edit/{{_id}}">
+            <button type="button" class="btn btn-success mt-2">Editar</button>
+          </a>
+        <form action="/usuarios/registros/delete" method="post">
+          <input type="hidden" name="id" value="{{_id}}">
+            <button type="submit" class="btn btn-danger mt-2">
+              Excluir
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}}
+    <div class="alert alert-danger">Não existem usuários!</div>
+  {{/each}}
+</div>

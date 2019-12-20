@@ -1,0 +1,20 @@
+{{#each erros}}
+ <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+
+<h2>Postagem</h2>
+<hr>
+<div class="card">
+ <div class="card-header" value="{{postagem.titulo}}">
+  <h4>{{postagem.titulo}}</h4>
+ </div>
+ <div class="card-body">
+  <p><b>{{postagem.descricao}}</b></p>
+  <p><i>{{postagem.conteudo}}</i></p>
+ </div>
+ <div class="card-footer text-muted">
+  <p>{{postagem.categoria.nome}} - {{postagem.date}}</p>
+ </div>
+</div>
+<hr>

@@ -1,0 +1,50 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+{{#if usuario}}
+<div class="card">
+    <h1>Editar Conta</h1>
+    <div class="card-body">
+        <form action="/usuarios/registros/editar" method="post">
+
+            <input type="hidden" name="id" value="{{usuario._id}}">
+
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" placeholder="digite o novo nome do usuario" class="form-control" value="{{usuario.nome}}">
+            
+            <label for="email">Email:</label>
+            <input type="text" name="email" placeholder="digite o novo email do usuário" class="form-control" value="{{usuario.email}}">
+            
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" placeholder="digite a nova senha do usuário" class="form-control">
+            
+            <label for="confirmaSenha">Confirme sua Senha:</label>
+            <input type="password" name="confirmaSenha" placeholder="digite a nova senha do usuário novamente" class="form-control">
+            
+            <label for="isAdmin">Permissão:</label>
+            <select class="form-control" name="isAdmin" id="isAdmin">
+                    <option value="0"> Usuário</option>
+                    <option value="1"> Administrador</option>
+            </select>
+
+            <hr>
+            <button class="btn btn-success">Editar conta</button>
+        </form>
+    </div>
+</div>
+{{else}}
+        <div class="alert alert-danger">Não foi possível editar registro!</div>
+{{/if}}
+
+<script>
+ document.body.onload = new function(){
+  var adm = document.getElementById('isAdmin')
+  var isAdmin = "{{usuario.isAdmin}}"
+  var admin = adm.options[0].value
+  while (admin != isAdmin){
+  adm.selectedIndex++
+  admin=adm.options[adm.selectedIndex].value
+  }
+ }
+</script>
